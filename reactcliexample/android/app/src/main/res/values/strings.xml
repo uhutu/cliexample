@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">示例项目</string>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">key_for_android</string>
+    <string moduleConfig="true" name="reactNativeCodePush_CodePushServerURL">https://code-push.srnpr.com/</string>
+</resources>
