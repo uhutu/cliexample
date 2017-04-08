@@ -5,9 +5,7 @@
       "versionName": "1.0.1",
       "versionBuild": "1"
     },
-    "plugReact":{
-      
-    },
+    
     "params":{
       "codepushKeyAndroid":"key_for_android",
       "codepushKeyIos":"key_for_ios"

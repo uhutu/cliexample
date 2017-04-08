@@ -72,5 +72,7 @@
         <string>NSMicrophoneUsageDescription</string>
         <key>NSCameraUsageDescription</key>
         <string>NSCameraUsageDescription</string>
+        <key>NSPhotoLibraryUsageDescription</key>
+        <string>NSPhotoLibraryUsageDescription</string>
     </dict>
 </plist>

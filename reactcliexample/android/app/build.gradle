@@ -129,9 +129,7 @@ android {
 dependencies {
     compile project(':react-native-image-picker')
     compile project(':react-native-camera')
-// uhutu_autonotebegin_react_note_plug_rn_voip_android_build
-compile project(':CallKit')
-// uhutu_autonoteend_react_note_plug_rn_voip_android_build
+
     compile project(':react-native-sound')
     compile project(':react-native-vector-icons')
     compile project(':react-native-code-push')
