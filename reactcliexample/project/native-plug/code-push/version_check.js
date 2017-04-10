@@ -48,6 +48,14 @@ export default class VersionCheck {
   }
 
 
+  static upCurrentVersion() {
+    return {
+      versionCode: "1.0.1",
+      versionNumber: "1"
+    };
+  }
+
+
   static upVersionInfo(fCallBack) {
 
 
