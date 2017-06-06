@@ -1,0 +1,85 @@
+import React, { Component } from 'react';
+
+import {
+  TouchableOpacity,
+  StyleSheet,
+  Text,
+  Image,
+  ListView,
+  FlatList,
+  ScrollView,
+  TextInput,
+  Dimensions,
+  RefreshControl,
+  Switch,
+  View
+} from 'react-native';
+
+import {PlusFormSelect,PlusFormImage,PlusFormInput,PlusFormDate,PlusOperateForm,PlusOperatePage,PlusItemButton,PlusItemIcon,PlusFormSwitch,PlusFormDisplay,PlusItemListview,PlusItemBadge,PlusItemWebView,PlusFormRead} from 'uhutu-plus';
+import ScrollableTabView, {DefaultTabBar, } from 'react-native-scrollable-tab-view';
+
+import styles from "<%- out.pageConfig.styleFile %>-style";
+
+import current_support from 'uhutu-plus/dist/youth/ginkgo/current';
+import top_support from 'uhutu-plus/dist/youth/top/support';
+
+ <% out.pageConfig.scriptFiles.forEach((scriptFile)=>{ %>
+import <%-scriptFile.fileObject%> from "<%-scriptFile.fileUrl%>";
+ <% })%>
+
+export default class  extends Component {
+
+  constructor(props) {
+    super(props);
+
+    top_support.initPage(this,<%- JSON.stringify(out.pageProperty) %>);
+
+  
+
+    this.state = {
+      
+      rootAsyncShow:<%= (out.pageConfig.asyncShow=="true")?"true":"false" %>};
+  }
+
+
+  <% out.templateInfos.forEach((template)=>{ %>
+  x_template_render_<%- template.templateName %>(item){
+    return (
+    <%- template.templateContent.join('') %>
+    )
+  }
+<% }) %>
+
+  <% if (out.pageConfig.execReact !=undefined ){ %>
+  <%- out.pageConfig.execReact.join('\n') %>
+<% } %>
+
+  <% out.scriptInfos.forEach((scriptInfo)=>{ %>
+        <%- scriptInfo.scriptContent.replace(/function/g,'')-%>
+      <% }) %>
+
+
+
+  static navigationOptions =navprop =>{    return  {
+    title: '<%- out.pageConfig.pageTitle %>',
+    <% if(out.pageConfig.navToolOption!='') {%>
+      <% out.templateInfos.forEach((template)=>{ if(template.templateName==out.pageConfig.navToolOption){ %>
+      headerRight: <%- template.templateContent.join('').replace('this,','navprop,') %>
+      <% }}) %>
+    <%} %>
+  }};
+
+  componentDidMount() {
+    PlusOperatePage.pageNavInit(this.props.navigation);
+
+    <%- out.pageConfig.scriptInit %>
+  }
+ 
+
+  render(){
+    return (
+      <%- out.content.join('') %>
+    )
+  }
+
+};

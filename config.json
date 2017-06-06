@@ -1,16 +1,27 @@
 {
-  "project":{
-      "projectName":"cliexample",
-      "displayName": "示例项目",
-      "versionName": "1.0.1",
-      "versionBuild": "1"
-    },
-    
-    "params":{
-      "codepushKeyAndroid":"key_for_android",
-      "codepushKeyIos":"key_for_ios"
-    },
-    "system":{
-      "editionCode":"1002"
+  "project": {
+    "projectName": "cliexample",
+    "displayName": "示例项目",
+    "versionName": "1.0.1",
+    "versionBuild": "1"
+  },
+
+  "params": {
+    "codepushKeyAndroid": "key_for_android",
+    "codepushKeyIos": "key_for_ios"
+  },
+  "plugReact": {
+    "simple_react": {
+      "disable": false
     }
+  },
+  "appWeapp": {
+    "disable": true
+  },
+  "appVue": {
+    "disable": true
+  },
+  "system": {
+    "editionCode": "1002"
+  }
 }

@@ -58,7 +58,7 @@ import com.android.build.OutputFile
  *   inputExcludes: ["android/**", "ios/**"],
  *
  *   // override which node gets called and with what additional arguments
- *   nodeExecutableAndArgs: ["node"]
+ *   nodeExecutableAndArgs: ["node"],
  *
  *   // supply additional arguments to the packager
  *   extraPackagerArgs: []
@@ -129,8 +129,6 @@ android {
 dependencies {
     compile project(':react-native-image-picker')
     compile project(':react-native-camera')
-
-    compile project(':react-native-sound')
     compile project(':react-native-vector-icons')
     compile project(':react-native-code-push')
     compile fileTree(dir: "libs", include: ["*.jar"])

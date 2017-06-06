@@ -1,0 +1,60 @@
+
+.page_main {
+    flex: 1
+}
+
+.page_listview {
+    padding-top: 10;
+}
+
+.page_item {
+    flex-direction: row;
+    border-top-width: 1;
+    border-top-color: #cccccc;
+    padding-top: 10;
+}
+
+.page_item_circle {
+    width: 54;
+    height: 54;
+    margin: 10;
+    border-radius: 27;
+    justify-content: center;
+    align-items: center;
+}
+
+.page_item_name {
+    width: 48;
+    overflow: hidden;
+    height: 15;
+    color: #ffffff;
+    text-align: center;
+}
+
+.page_item_btn_box {
+    flex-direction: row;
+}
+
+.page_item_button {
+    background-color: #cccccc;
+}
+
+.demo_list_badge_view {
+    flex-direction: row;
+}
+
+.demo_list_badge_box {
+    background-color: deeppink;
+    padding-left: 5;
+    padding-right: 5;
+    padding-top: 3;
+    padding-bottom: 3;
+    margin-right: 10;
+}
+
+.demo_list_badge_text {
+    
+    color: #fff;
+    
+    font-size: 11;
+}
