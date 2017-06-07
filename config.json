@@ -10,8 +10,21 @@
     "codepushKeyAndroid": "key_for_android",
     "codepushKeyIos": "key_for_ios"
   },
+  "file": {
+    "reactStartPage": "./project/svg/demo"
+  },
   "plugReact": {
     "simple_react": {
+      "disable": false
+    },
+    "rn_realm": {
+      "disable": false
+    },
+
+    "rn_fetch_blob": {
+      "disable": false
+    },
+    "rn_svg": {
       "disable": false
     }
   },

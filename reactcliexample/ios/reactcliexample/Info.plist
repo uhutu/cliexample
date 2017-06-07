@@ -43,18 +43,6 @@
                 </dict>
             </dict>
         </dict>
-        <key>CFBundleIdentifier</key>
-        <string>com.uhutu.react.cliexample</string>
-        <key>CFBundleShortVersionString</key>
-        <string>1.0.1</string>
-        <key>CFBundleVersion</key>
-        <string>1</string>
-        <key>CFBundleDisplayName</key>
-        <string>示例项目</string>
-        <key>CodePushServerURL</key>
-        <string>https://code-push.srnpr.com/</string>
-        <key>CodePushDeploymentKey</key>
-        <string>key_for_ios</string>
         <key>UIAppFonts</key>
         <array>
             <string>Entypo.ttf</string>
@@ -68,6 +56,18 @@
             <string>SimpleLineIcons.ttf</string>
             <string>Zocial.ttf</string>
         </array>
+        <key>CFBundleIdentifier</key>
+        <string>com.uhutu.react.cliexample</string>
+        <key>CFBundleShortVersionString</key>
+        <string>1.0.1</string>
+        <key>CFBundleVersion</key>
+        <string>1</string>
+        <key>CFBundleDisplayName</key>
+        <string>示例项目</string>
+        <key>CodePushServerURL</key>
+        <string>https://code-push.srnpr.com/</string>
+        <key>CodePushDeploymentKey</key>
+        <string>key_for_ios</string>
         <key>NSMicrophoneUsageDescription</key>
         <string>NSMicrophoneUsageDescription</string>
         <key>NSCameraUsageDescription</key>

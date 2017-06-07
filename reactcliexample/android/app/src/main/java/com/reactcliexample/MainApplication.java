@@ -3,6 +3,9 @@ package com.reactcliexample;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.horcrux.svg.SvgPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import io.realm.react.RealmReactPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -33,6 +36,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new SvgPackage(),
+            new RNFetchBlobPackage(),
+            new RealmReactPackage(),
             new ImagePickerPackage(),
             new RCTCameraPackage(),
             new VectorIconsPackage(),

@@ -1,3 +1,3 @@
 import { AppRegistry } from 'react-native';
-import MainPage from './project/pages/air/layout/index';
+import MainPage from './project/svg/demo';
 AppRegistry.registerComponent('reactcliexample', () => MainPage);
