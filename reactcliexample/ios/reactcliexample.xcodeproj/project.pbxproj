@@ -46,6 +46,7 @@
 		4FEE57795FAF4AE29CF8DEA2 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3FC0E19AD1D44831A6AA26B0 /* MaterialCommunityIcons.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		927E2B801EEA45D60094BCB5 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 922FC3851EE6A9C80004DB47 /* libART.a */; };
 		9BEC89252A354B24B088FA0A /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC04A61AC9AF472CBBB66F72 /* libCodePush.a */; };
 		BEE15486B0364F08BF9A7FBA /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6CC36FB66414A45945777F3 /* EvilIcons.ttf */; };
 		C27687DD9DFE4F19849B9C07 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C30FA81BA544593A0B27B5B /* Ionicons.ttf */; };
@@ -372,6 +373,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				927E2B801EEA45D60094BCB5 /* libART.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,

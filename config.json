@@ -11,7 +11,7 @@
     "codepushKeyIos": "key_for_ios"
   },
   "file": {
-    "reactStartPage": "./project/svg/demo"
+    "reactStartPage": "./project/progress/index"
   },
   "plugReact": {
     "simple_react": {
@@ -25,6 +25,9 @@
       "disable": false
     },
     "rn_svg": {
+      "disable": false
+    },
+    "rn_progress": {
       "disable": false
     }
   },
