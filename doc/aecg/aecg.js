@@ -1,32 +1,46 @@
 var AECG = {
 
     temp: {
-        //盒子高度
+        //总高度
         mainHeight: 0,
 
         mainWidth: 0,
+
+        //画布宽度
+        drawWidth:0,
 
         mainStartX: 0,
 
 
         //多少导
         stepNumber: 12,
+
+        //每导高度
         stepHeight: 0,
 
         context: null,
 
+        backCanvas:null,
+
         dataSecond: 20,
 
-        //横小格数量
+        //竖向小格数量
         boxNumber: 4,
-        //横小格高度
+        //横向小格数量
+        boxSize:5,
+        //竖向相小格高度
         boxHeight: 0,
 
 
         //展示数据
         dataShow: [],
 
+        dataLength:0,
 
+
+        timerInterval:null,
+        timerLeft:0,
+       
 
         //当前画的秒数
         currentSecond: 0
@@ -40,11 +54,14 @@ var AECG = {
 
        
         
-        AECG.init();
+        //AECG.init();
 
          //AECG.simpleLine();
 
-        this.loadXml(sXmlFile);
+        AECG.loadXml(sXmlFile);
+
+
+
 
 
     },
@@ -86,7 +103,9 @@ var AECG = {
                         }
 
                     }
-                    console.log(aShow.length)
+                    //console.log(aShow.length)
+
+                    AECG.temp.dataLength=aShow.length;
                     AECG.temp.dataShow.push(aShow);
 
 
@@ -94,34 +113,37 @@ var AECG = {
 
             });
 
+            AECG.init();
             //开始画数据
             AECG.dataDraw();
+
+            AECG.timer();
 
         });
     },
 
     dataDraw: function () {
 
-        for (var i = 0, j = this.temp.dataShow.length; i < j; i++) {
+        for (var i = 0, j = AECG.temp.dataShow.length; i < j; i++) {
 
-            var aShow = this.temp.dataShow[i];
-            var iNowStart = this.temp.currentSecond * 25;
+            var aShow = AECG.temp.dataShow[i];
+            var iNowStart = AECG.temp.currentSecond * 25;
 
             for (var n = iNowStart + 1, m = iNowStart + 500; n < m; n++) {
-                var iStartX = this.temp.mainStartX + (n - 1) * this.temp.boxHeight / 5;
-                var iStartY = (aShow[n - 1] / 500 + 2) * this.temp.boxHeight + i * this.temp.boxNumber *
-                    this.temp.boxHeight;
+                var iStartX = AECG.temp.mainStartX + (n - 1) * AECG.temp.boxHeight / 5;
+                var iStartY = (aShow[n - 1] / 500 + 2) * AECG.temp.boxHeight + i * AECG.temp.boxNumber *
+                    AECG.temp.boxHeight;
 
-                var iEndX = this.temp.mainStartX + (n) * this.temp.boxHeight / 5;
-                var iEndY = (aShow[n] / 500 + 2) * this.temp.boxHeight + i * this.temp.boxNumber * this.temp
+                var iEndX = AECG.temp.mainStartX + (n) * AECG.temp.boxHeight / 5;
+                var iEndY = (aShow[n] / 500 + 2) * AECG.temp.boxHeight + i * AECG.temp.boxNumber * AECG.temp
                     .boxHeight;
-                this.drawLine({
+                AECG.drawLine({
                     startX: iStartX,
                     startY: iStartY,
                     endX: iEndX,
                     endY: iEndY,
-                    lineColor: 'green',
-                    lineWidth: 1
+                    lineColor: '#22b228',
+                    lineWidth: 2
                 });
 
             }
@@ -133,6 +155,36 @@ var AECG = {
 
     },
 
+    timer:function(){
+
+        //setInterval();
+        
+
+        AECG.temp.timerInterval=  setInterval(AECG.changeLeft,50);
+
+        
+
+    },
+
+    changeLeft:function(){
+        //$("#show").animate({marginLeft:"-300px"},{speed:2000});
+
+        AECG.temp.timerLeft=AECG.temp.timerLeft-AECG.temp.stepHeight/AECG.temp.boxNumber/4;
+
+       if(AECG.temp.timerLeft<=0-(AECG.temp.drawWidth-AECG.temp.mainWidth)){
+        clearInterval(AECG.temp.timerInterval);
+       }
+       else{
+        
+        document.getElementById('show').style.marginLeft=AECG.temp.timerLeft;
+       }
+
+
+        
+
+    },
+
+
     logText:function(sText){
         $('#text').text(sText);
     },
@@ -140,54 +192,71 @@ var AECG = {
 
     init: function () {
 
+
+        var main=document.getElementById('main');
+
+        AECG.temp.mainHeight = main.clientHeight;
+
+        AECG.temp.mainWidth = main.clientWidth;
+        
+        AECG.temp.stepHeight = AECG.temp.mainHeight / AECG.temp.stepNumber;
+
+        var canvas = document.getElementById("canvas_front");
+
+        var canvasBack=document.getElementById("canvas_back");
+
+        canvasBack.width=AECG.temp.mainWidth;
+        canvasBack.height=AECG.temp.mainHeight;
+
+        AECG.temp.backCanvas = canvasBack.getContext("2d");
+
+        var show=document.getElementById('show');
+
+
+        AECG.temp.drawWidth=AECG.temp.dataLength*AECG.temp.stepHeight/AECG.temp.boxNumber/AECG.temp.boxSize;
+
+        show.style.width=AECG.temp.drawWidth+'px';
+        show.style.height=AECG.temp.mainHeight;
+
+        show.style.marginLeft=AECG.temp.mainWidth;
+        AECG.temp.timerLeft=AECG.temp.mainWidth;
+
+
+        canvas.width = AECG.temp.drawWidth;
+        canvas.height = AECG.temp.mainHeight;
         
 
-        var canvas = document.getElementById("canvas");
-
         
-        
-        this.temp.mainHeight = canvas.clientHeight;
-
-        this.temp.mainWidth = canvas.clientWidth;
-
-        
-
-
-        canvas.width = this.temp.mainWidth;
-        canvas.height = this.temp.mainHeight;
-        
-
-        this.temp.stepHeight = this.temp.mainHeight / this.temp.stepNumber;
 
         //画横线
-        this.temp.boxHeight = this.temp.stepHeight / this.temp.boxNumber;
+        AECG.temp.boxHeight = AECG.temp.stepHeight / AECG.temp.boxNumber;
 
 
 
-        this.temp.context = canvas.getContext("2d");
+        AECG.temp.context = canvas.getContext("2d");
 
 
 
-        this.temp.mainStartX = this.temp.mainWidth % this.temp.stepHeight + 1 * this.temp.stepHeight;
+       // AECG.temp.mainStartX = AECG.temp.mainWidth % (AECG.temp.stepHeight*1.25);
 
 
         //画横线
         {
-            var iStartCell = this.temp.boxHeight;
+            var iStartCell = AECG.temp.boxHeight;
             var iEveryStep = 1;
-            while (iStartCell < this.temp.mainHeight) {
-                var bFlagBig = iEveryStep % this.temp.boxNumber === 0;
-                this.drawLine({
-                    startX: bFlagBig ? 0 : this.temp.mainStartX,
+            while (iStartCell < AECG.temp.mainHeight) {
+                var bFlagBig = iEveryStep % AECG.temp.boxNumber === 0;
+                AECG.drawBack({
+                    startX: bFlagBig ? 0 : AECG.temp.mainStartX,
                     startY: iStartCell,
-                    endX: this.temp.mainWidth,
+                    endX: AECG.temp.mainWidth,
                     endY: iStartCell,
                     lineColor: bFlagBig ? '#454545' : '#363636',
                     lineWidth: bFlagBig ? 0.4 : 0.3
                 });
 
                 iEveryStep++;
-                iStartCell = iStartCell + this.temp.boxHeight;
+                iStartCell = iStartCell + AECG.temp.boxHeight;
 
 
             }
@@ -197,32 +266,32 @@ var AECG = {
 
         //画竖线
         {
-            var iStartCell = this.temp.mainStartX;
+            var iStartCell = AECG.temp.mainStartX;
             var iEveryStep = 0;
-            while (iStartCell < this.temp.mainWidth) {
+            while (iStartCell < AECG.temp.drawWidth) {
 
 
-                var bFlagBig = iEveryStep % this.temp.boxNumber === 0;
+                var bFlagBig = iEveryStep % AECG.temp.boxSize === 0;
 
-                this.drawLine({
+                AECG.drawBack({
                     startX: iStartCell,
                     startY: 0,
                     endX: iStartCell,
-                    endY: this.temp.mainHeight,
+                    endY: AECG.temp.mainHeight,
                     lineColor: bFlagBig ? '#454545' : '#363636',
                     lineWidth: bFlagBig ? 0.4 : 0.3
                 });
 
                 iEveryStep++;
-                iStartCell = iStartCell + this.temp.boxHeight;
+                iStartCell = iStartCell + AECG.temp.boxHeight;
 
             }
         }
 
     },
+    drawBack: function (oSet) {
 
-    drawLine: function (oSet) {
-
+        /*
         var oDefault = {
             startX: 0,
             startY: 0,
@@ -233,15 +302,43 @@ var AECG = {
         }
 
         //oSet = Object.assign(oDefault, oSet);
-
+        */
         
-        this.temp.context.beginPath();
-        this.temp.context.moveTo(oSet.startX, oSet.startY);
-        this.temp.context.lineTo(oSet.endX, oSet.endY);
-        this.temp.context.lineWidth = oSet.lineWidth;
-        this.temp.context.closePath();
-        this.temp.context.strokeStyle = oSet.lineColor;
-        this.temp.context.stroke();
+        AECG.temp.backCanvas.beginPath();
+        AECG.temp.backCanvas.moveTo(oSet.startX, oSet.startY);
+        AECG.temp.backCanvas.lineTo(oSet.endX, oSet.endY);
+        AECG.temp.backCanvas.lineWidth = oSet.lineWidth;
+        AECG.temp.backCanvas.closePath();
+        AECG.temp.backCanvas.strokeStyle = oSet.lineColor;
+        AECG.temp.backCanvas.stroke();
+        
+        
+        
+
+    },
+
+    drawLine: function (oSet) {
+
+        /*
+        var oDefault = {
+            startX: 0,
+            startY: 0,
+            endX: 0,
+            endY: 0,
+            lineColor: 'green',
+            lineWidth: 1
+        }
+
+        //oSet = Object.assign(oDefault, oSet);
+        */
+        
+        AECG.temp.context.beginPath();
+        AECG.temp.context.moveTo(oSet.startX, oSet.startY);
+        AECG.temp.context.lineTo(oSet.endX, oSet.endY);
+        AECG.temp.context.lineWidth = oSet.lineWidth;
+        AECG.temp.context.closePath();
+        AECG.temp.context.strokeStyle = oSet.lineColor;
+        AECG.temp.context.stroke();
         
         
         
@@ -255,4 +352,4 @@ var AECG = {
 
 
 
-AECG.display('https://mediciner.oss-cn-beijing.aliyuncs.com/demos/aecg/demo.xml');
+AECG.display('demo.xml');
